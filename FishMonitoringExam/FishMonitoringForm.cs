@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,6 +95,39 @@ namespace FishMonitoringExam
                 }
             }
             catch { }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = "";
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                path = saveFileDialog.FileName;
+            }
+
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.WriteLine(mtb_date.Text);
+                sw.WriteLine(tb_tempratures.Text);
+            }
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = "";
+
+            if (loadFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                path = saveFileDialog.FileName;
+            }
+
+            using (StreamReader sr = new StreamReader(path))
+            {
+                mtb_date.Text = sr.ReadLine();
+                tb_tempratures.Text =  sr.ReadLine();
+            }
         }
     }
 }
