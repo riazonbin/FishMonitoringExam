@@ -44,7 +44,13 @@ namespace FishMonitoringExam
 
         private void btn_makeReport_Click(object sender, EventArgs e)
         {
+            if(!CheckFields())
+            {
+                return;
+            }
+
             dataGrid_report.Rows.Clear();
+
             try
             {
                 string[] temps = tb_tempratures.Text.Split();
@@ -111,6 +117,15 @@ namespace FishMonitoringExam
             {
                 sw.WriteLine(mtb_date.Text);
                 sw.WriteLine(tb_tempratures.Text);
+
+                foreach (DataGridViewRow row in dataGrid_report.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        sw.Write(cell.Value + " "); 
+                    }
+                    sw.WriteLine();
+                }
             }
         }
 
@@ -120,7 +135,7 @@ namespace FishMonitoringExam
 
             if (loadFileDialog.ShowDialog() == DialogResult.OK)
             {
-                path = saveFileDialog.FileName;
+                path = loadFileDialog.FileName;
             }
 
             using (StreamReader sr = new StreamReader(path))
@@ -128,6 +143,39 @@ namespace FishMonitoringExam
                 mtb_date.Text = sr.ReadLine();
                 tb_tempratures.Text =  sr.ReadLine();
             }
+        }
+
+        private bool CheckFields()
+        {
+            if (mtb_typeOfFish.Text == "")
+            {
+                MessageBox.Show("Введите тип рыбы!",
+                    "Предупреждение",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            if (tb_maxTemp.Text == "")
+            {
+                MessageBox.Show("Заполните данные о максимальной температуре хранения рыбы!",
+                    "Предупреждение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            var tempsCheck = new List<string>(tb_tempratures.Text.Split());
+            if (tempsCheck.Count < 18 || tempsCheck.Count > 54)
+            {
+                MessageBox.Show("Недопустимое кол-во отчётов(оно должно быть от 18 до 54)!",
+                    "Предупреждение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            return true;
         }
     }
 }
