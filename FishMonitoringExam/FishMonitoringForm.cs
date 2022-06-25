@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 
 namespace FishMonitoringExam
 {
@@ -43,12 +43,15 @@ namespace FishMonitoringExam
 
         private void btn_makeReport_Click(object sender, EventArgs e)
         {
+            dataGrid_report.Rows.Clear();
             try
             {
                 string[] temps = tb_tempratures.Text.Split();
                 DateTime time = DateTime.Parse(mtb_date.Text, culture);
                 int maxTemp = int.Parse(tb_maxTemp.Text);
                 int minTemp = int.Parse(tb_minTemp.Text);
+                int maxViolationsTime = 0;
+                int minViolationsTime = 0;
 
                 foreach (var temp in temps)
                 {
@@ -58,16 +61,36 @@ namespace FishMonitoringExam
                     {
                         string[] row = new string[] { $"{time}", $"{temp}", $"{maxTemp}",
                         $"{maxTemp - currentTemp}"};
+
                         time = time.AddMinutes(10);
                         dataGrid_report.Rows.Add(row);
+                        maxViolationsTime += 10;
                     }
                     else if (currentTemp < minTemp)
                     {
                         string[] row = new string[] { $"{time}", $"{temp}", $"{minTemp}",
                         $"{minTemp - currentTemp}"};
+
                         time = time.AddMinutes(10);
                         dataGrid_report.Rows.Add(row);
+                        minViolationsTime += 10;
                     }
+                }
+                if(maxViolationsTime > int.Parse(mtb_maxTime.Text))
+                {
+                    tb_maxViolations.Text = $"Порог максимально допустимой температуры превышен на " +
+                        $"{maxViolationsTime / 60} часов, {maxViolationsTime % 60} минут";
+
+                    MessageBox.Show("Порог максимально допустимой t превышен!", "Предупреждение", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if(minViolationsTime > int.Parse(mtb_minTime.Text))
+                {
+                    tb_minViolations.Text = $"Порог минимально допустимой температуры превышен на " +
+                        $"{minViolationsTime / 60} часов, {minViolationsTime % 60} минут";
+
+                    MessageBox.Show("Порог минимально допустимой t превышен!", "Предупреждение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch { }

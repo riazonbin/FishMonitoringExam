@@ -45,11 +45,13 @@ namespace FishMonitoringExam
             this.lb_tempratures = new System.Windows.Forms.Label();
             this.lb_report = new System.Windows.Forms.Label();
             this.dataGrid_report = new System.Windows.Forms.DataGridView();
-            this.btn_makeReport = new System.Windows.Forms.Button();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Norm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.normDeviation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_makeReport = new System.Windows.Forms.Button();
+            this.tb_maxViolations = new System.Windows.Forms.TextBox();
+            this.tb_minViolations = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_report)).BeginInit();
             this.SuspendLayout();
             // 
@@ -192,23 +194,13 @@ namespace FishMonitoringExam
             this.Fact,
             this.Norm,
             this.normDeviation});
-            this.dataGrid_report.Location = new System.Drawing.Point(30, 295);
+            this.dataGrid_report.Location = new System.Drawing.Point(28, 345);
             this.dataGrid_report.Name = "dataGrid_report";
             this.dataGrid_report.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGrid_report.RowHeadersWidth = 60;
             this.dataGrid_report.RowTemplate.Height = 25;
             this.dataGrid_report.Size = new System.Drawing.Size(661, 211);
             this.dataGrid_report.TabIndex = 15;
-            // 
-            // btn_makeReport
-            // 
-            this.btn_makeReport.Location = new System.Drawing.Point(644, 249);
-            this.btn_makeReport.Name = "btn_makeReport";
-            this.btn_makeReport.Size = new System.Drawing.Size(144, 34);
-            this.btn_makeReport.TabIndex = 16;
-            this.btn_makeReport.Text = "Создать отчёт";
-            this.btn_makeReport.UseVisualStyleBackColor = true;
-            this.btn_makeReport.Click += new System.EventHandler(this.btn_makeReport_Click);
             // 
             // Time
             // 
@@ -234,11 +226,39 @@ namespace FishMonitoringExam
             this.normDeviation.Name = "normDeviation";
             this.normDeviation.Width = 150;
             // 
+            // btn_makeReport
+            // 
+            this.btn_makeReport.Location = new System.Drawing.Point(644, 249);
+            this.btn_makeReport.Name = "btn_makeReport";
+            this.btn_makeReport.Size = new System.Drawing.Size(144, 34);
+            this.btn_makeReport.TabIndex = 16;
+            this.btn_makeReport.Text = "Создать отчёт";
+            this.btn_makeReport.UseVisualStyleBackColor = true;
+            this.btn_makeReport.Click += new System.EventHandler(this.btn_makeReport_Click);
+            // 
+            // tb_maxViolations
+            // 
+            this.tb_maxViolations.Location = new System.Drawing.Point(30, 286);
+            this.tb_maxViolations.Name = "tb_maxViolations";
+            this.tb_maxViolations.ReadOnly = true;
+            this.tb_maxViolations.Size = new System.Drawing.Size(511, 23);
+            this.tb_maxViolations.TabIndex = 17;
+            // 
+            // tb_minViolations
+            // 
+            this.tb_minViolations.Location = new System.Drawing.Point(30, 316);
+            this.tb_minViolations.Name = "tb_minViolations";
+            this.tb_minViolations.ReadOnly = true;
+            this.tb_minViolations.Size = new System.Drawing.Size(511, 23);
+            this.tb_minViolations.TabIndex = 18;
+            // 
             // FishMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 568);
+            this.Controls.Add(this.tb_minViolations);
+            this.Controls.Add(this.tb_maxViolations);
             this.Controls.Add(this.btn_makeReport);
             this.Controls.Add(this.dataGrid_report);
             this.Controls.Add(this.lb_report);
@@ -288,6 +308,8 @@ namespace FishMonitoringExam
         private System.Windows.Forms.DataGridViewTextBoxColumn Fact;
         private System.Windows.Forms.DataGridViewTextBoxColumn Norm;
         private System.Windows.Forms.DataGridViewTextBoxColumn normDeviation;
+        private System.Windows.Forms.TextBox tb_maxViolations;
+        private System.Windows.Forms.TextBox tb_minViolations;
     }
 }
 
