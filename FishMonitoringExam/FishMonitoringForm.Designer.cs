@@ -40,16 +40,17 @@ namespace FishMonitoringExam
             this.mtb_maxTime = new System.Windows.Forms.MaskedTextBox();
             this.mtb_minTime = new System.Windows.Forms.MaskedTextBox();
             this.lb_date = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.mtb_date = new System.Windows.Forms.MaskedTextBox();
             this.tb_tempratures = new System.Windows.Forms.TextBox();
             this.lb_tempratures = new System.Windows.Forms.Label();
             this.lb_report = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGrid_report = new System.Windows.Forms.DataGridView();
+            this.btn_makeReport = new System.Windows.Forms.Button();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Norm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.normDeviation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_report)).BeginInit();
             this.SuspendLayout();
             // 
             // mtb_typeOfFish
@@ -146,14 +147,14 @@ namespace FishMonitoringExam
             this.lb_date.TabIndex = 10;
             this.lb_date.Text = "Дата";
             // 
-            // maskedTextBox1
+            // mtb_date
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(96, 178);
-            this.maskedTextBox1.Mask = "00/00/0000 90:00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.maskedTextBox1.TabIndex = 11;
-            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
+            this.mtb_date.Location = new System.Drawing.Point(96, 178);
+            this.mtb_date.Mask = "00/00/0000 90:00";
+            this.mtb_date.Name = "mtb_date";
+            this.mtb_date.Size = new System.Drawing.Size(100, 23);
+            this.mtb_date.TabIndex = 11;
+            this.mtb_date.ValidatingType = typeof(System.DateTime);
             // 
             // tb_tempratures
             // 
@@ -182,55 +183,62 @@ namespace FishMonitoringExam
             this.lb_report.TabIndex = 14;
             this.lb_report.Text = "Отчёт";
             // 
-            // dataGridView1
+            // dataGrid_report
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGrid_report.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGrid_report.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid_report.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Time,
             this.Fact,
             this.Norm,
             this.normDeviation});
-            this.dataGridView1.Location = new System.Drawing.Point(30, 295);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(444, 211);
-            this.dataGridView1.TabIndex = 15;
+            this.dataGrid_report.Location = new System.Drawing.Point(30, 295);
+            this.dataGrid_report.Name = "dataGrid_report";
+            this.dataGrid_report.RowTemplate.Height = 25;
+            this.dataGrid_report.Size = new System.Drawing.Size(444, 211);
+            this.dataGrid_report.TabIndex = 15;
+            // 
+            // btn_makeReport
+            // 
+            this.btn_makeReport.Location = new System.Drawing.Point(644, 249);
+            this.btn_makeReport.Name = "btn_makeReport";
+            this.btn_makeReport.Size = new System.Drawing.Size(144, 34);
+            this.btn_makeReport.TabIndex = 16;
+            this.btn_makeReport.Text = "Создать отчёт";
+            this.btn_makeReport.UseVisualStyleBackColor = true;
+            this.btn_makeReport.Click += new System.EventHandler(this.btn_makeReport_Click);
             // 
             // Time
             // 
             this.Time.HeaderText = "Время";
             this.Time.Name = "Time";
-            this.Time.ReadOnly = true;
             // 
             // Fact
             // 
             this.Fact.HeaderText = "Факт";
             this.Fact.Name = "Fact";
-            this.Fact.ReadOnly = true;
             // 
             // Norm
             // 
             this.Norm.HeaderText = "Норма";
             this.Norm.Name = "Norm";
-            this.Norm.ReadOnly = true;
             // 
             // normDeviation
             // 
             this.normDeviation.HeaderText = "Отклонение от нормы";
             this.normDeviation.Name = "normDeviation";
-            this.normDeviation.ReadOnly = true;
             // 
             // FishMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 568);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btn_makeReport);
+            this.Controls.Add(this.dataGrid_report);
             this.Controls.Add(this.lb_report);
             this.Controls.Add(this.lb_tempratures);
             this.Controls.Add(this.tb_tempratures);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.mtb_date);
             this.Controls.Add(this.lb_date);
             this.Controls.Add(this.mtb_minTime);
             this.Controls.Add(this.mtb_maxTime);
@@ -245,7 +253,7 @@ namespace FishMonitoringExam
             this.MinimumSize = new System.Drawing.Size(350, 350);
             this.Name = "FishMonitoring";
             this.Text = "Fish monitoring";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_report)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,11 +272,12 @@ namespace FishMonitoringExam
         private System.Windows.Forms.MaskedTextBox mtb_maxTime;
         private System.Windows.Forms.MaskedTextBox mtb_minTime;
         private System.Windows.Forms.Label lb_date;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox mtb_date;
         private System.Windows.Forms.TextBox tb_tempratures;
         private System.Windows.Forms.Label lb_tempratures;
         private System.Windows.Forms.Label lb_report;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGrid_report;
+        private System.Windows.Forms.Button btn_makeReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fact;
         private System.Windows.Forms.DataGridViewTextBoxColumn Norm;
