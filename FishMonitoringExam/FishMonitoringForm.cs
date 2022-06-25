@@ -91,6 +91,11 @@ namespace FishMonitoringExam
                     MessageBox.Show("Порог максимально допустимой t превышен!", "Предупреждение", 
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                else 
+                {
+                    tb_maxViolations.Text = "";
+                }
+
                 if(minViolationsTime > int.Parse(mtb_minTime.Text))
                 {
                     tb_minViolations.Text = $"Порог минимально допустимой температуры превышен на " +
@@ -98,6 +103,10 @@ namespace FishMonitoringExam
 
                     MessageBox.Show("Порог минимально допустимой t превышен!", "Предупреждение",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    tb_minViolations.Text = "";
                 }
             }
             catch { }
