@@ -17,22 +17,26 @@ namespace FishMonitoringExam
             InitializeComponent();
         }
 
-        private void tb_Temps_KeyPress(object sender, KeyPressEventArgs e)
+        private void tb_TempsAdd_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && (e.KeyChar != ',') && (e.KeyChar != '-') && (e.KeyChar != (char)8))
+            if (!char.IsDigit(e.KeyChar) && (e.KeyChar != '-') && (e.KeyChar != (char)8))
             {
                 e.Handled = true;
             }
-            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf(',') > -1))
-            {
-                e.Handled = true;
-            }
-
-
             if ((e.KeyChar == '-') && ((sender as TextBox).Text.IndexOf('-') > -1))
             {
                 e.Handled = true;
             }
+        }
+
+        private void tb_Temps_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == ' ' || e.KeyChar == (char)8)
+            {
+                return;
+            }
+
+            e.Handled = true;
         }
     }
 }
