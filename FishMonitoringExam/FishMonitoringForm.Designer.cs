@@ -194,8 +194,10 @@ namespace FishMonitoringExam
             this.normDeviation});
             this.dataGrid_report.Location = new System.Drawing.Point(30, 295);
             this.dataGrid_report.Name = "dataGrid_report";
+            this.dataGrid_report.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dataGrid_report.RowHeadersWidth = 60;
             this.dataGrid_report.RowTemplate.Height = 25;
-            this.dataGrid_report.Size = new System.Drawing.Size(444, 211);
+            this.dataGrid_report.Size = new System.Drawing.Size(661, 211);
             this.dataGrid_report.TabIndex = 15;
             // 
             // btn_makeReport
@@ -212,21 +214,25 @@ namespace FishMonitoringExam
             // 
             this.Time.HeaderText = "Время";
             this.Time.Name = "Time";
+            this.Time.Width = 150;
             // 
             // Fact
             // 
             this.Fact.HeaderText = "Факт";
             this.Fact.Name = "Fact";
+            this.Fact.Width = 150;
             // 
             // Norm
             // 
             this.Norm.HeaderText = "Норма";
             this.Norm.Name = "Norm";
+            this.Norm.Width = 150;
             // 
             // normDeviation
             // 
             this.normDeviation.HeaderText = "Отклонение от нормы";
             this.normDeviation.Name = "normDeviation";
+            this.normDeviation.Width = 150;
             // 
             // FishMonitoring
             // 

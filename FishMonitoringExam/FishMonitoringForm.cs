@@ -43,18 +43,34 @@ namespace FishMonitoringExam
 
         private void btn_makeReport_Click(object sender, EventArgs e)
         {
-            var tempratures = new List<int>();
-
-            string[] temps = tb_tempratures.Text.Split();
-            DateTime time = DateTime.Parse(mtb_date.Text, culture);
-
-            foreach (var temp in temps)
+            try
             {
-                string[] row = new string[] { $"{time}", $"{temp}" };
-                time = time.AddMinutes(10);
-                dataGrid_report.Rows.Add(row);
-            }
+                string[] temps = tb_tempratures.Text.Split();
+                DateTime time = DateTime.Parse(mtb_date.Text, culture);
+                int maxTemp = int.Parse(tb_maxTemp.Text);
+                int minTemp = int.Parse(tb_minTemp.Text);
 
+                foreach (var temp in temps)
+                {
+                    int currentTemp = int.Parse(temp);
+
+                    if (currentTemp > maxTemp)
+                    {
+                        string[] row = new string[] { $"{time}", $"{temp}", $"{maxTemp}",
+                        $"{maxTemp - currentTemp}"};
+                        time = time.AddMinutes(10);
+                        dataGrid_report.Rows.Add(row);
+                    }
+                    else if (currentTemp < minTemp)
+                    {
+                        string[] row = new string[] { $"{time}", $"{temp}", $"{minTemp}",
+                        $"{minTemp - currentTemp}"};
+                        time = time.AddMinutes(10);
+                        dataGrid_report.Rows.Add(row);
+                    }
+                }
+            }
+            catch { }
         }
     }
 }
